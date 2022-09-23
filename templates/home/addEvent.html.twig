@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter en événement{% endblock %}
+
+{% block body %}
+
+<div class="addEventForm">
+    {{form_start (formulaire)}}
+        {{form_row (formulaire.date, { 'attr': {'placeholder':'la date'}} )}}
+        {{form_row (formulaire.title, { 'attr': {'placeholder':'le titre'}} )}}
+        {{form_row (formulaire.place, { 'attr': {'placeholder':'la place'}} )}}
+        {{form_row (formulaire.picture )}}
+        {{form_row (formulaire.description, { 'attr': {'placeholder':'votre nom'}} )}}
+        <button type="submit">Ajouter un événement</button>
+    {{form_end (formulaire)}}  
+</div>
+{% endblock %}
