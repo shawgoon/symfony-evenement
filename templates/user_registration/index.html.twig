@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'enregistrer{% endblock %}
+
+{% block body %}
+<div class="signUpForm">
+    {{form_start(formulaire)}}
+    {{form_widget(formulaire)}}
+    <button type="submit">S'inscrire</button>
+    {{form_end(formulaire)}}
+</div>
+<a href="{{ path('app_home')}}">retour à l'accueil</a>
+{% endblock %}

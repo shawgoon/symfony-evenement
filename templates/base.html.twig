@@ -28,6 +28,24 @@
                     <a href="{{path('ajoutEvent')}}">
                         <li>ajouter un événement</li>
                     </a>
+                    
+                    {%if app.user%}
+                    <a href="{{path('app_logout')}}">
+                        <li>se déconnecter</li>
+                    </a>
+                    {% else %}
+                    <a href="{{path('app_user_registration')}}">
+                        <li>s'enregistrer</li>
+                    </a>
+                    <a href="{{path('app_login')}}">
+                        <li>se connecter</li>
+                    </a>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{path('app_admin')}}">
+                        <li>Administrateur</li>
+                    </a>
+                    {% endif %}
                 </ul>
             </nav>
         </header>

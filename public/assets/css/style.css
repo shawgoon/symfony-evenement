@@ -13,7 +13,7 @@ ul{
     background-color: rgb(212, 245, 212);
 }
 li{
-    width: 15em;
+    width: 10em;
     height: 5em;
     display: flex;
     justify-content: center;
@@ -88,7 +88,9 @@ p:last-child{
 
 /* form page */
 
-.addEventForm{
+.addEventForm,
+.signUpForm,
+.loginForm{
     background-image: url(../img/mariage-champetre.jpg);
     background-repeat: no-repeat;
     background-size: cover;
