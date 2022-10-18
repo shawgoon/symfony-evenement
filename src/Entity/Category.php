@@ -20,27 +20,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $mariage;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $batheme;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $kermesse;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $brocante;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $feteForaine;
+    private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="Category")
@@ -52,62 +32,14 @@ class Category
         return $this->id;
     }
 
-    public function getMariage(): ?string
+    public function getCategory(): ?string
     {
-        return $this->mariage;
+        return $this->category;
     }
 
-    public function setMariage(?string $mariage): self
+    public function setCategory(?string $category): self
     {
-        $this->mariage = $mariage;
-
-        return $this;
-    }
-
-    public function getBathême(): ?string
-    {
-        return $this->batheme;
-    }
-
-    public function setBathême(?string $batheme): self
-    {
-        $this->batheme = $batheme;
-
-        return $this;
-    }
-
-    public function getKermesse(): ?string
-    {
-        return $this->kermesse;
-    }
-
-    public function setKermesse(?string $kermesse): self
-    {
-        $this->kermesse = $kermesse;
-
-        return $this;
-    }
-
-    public function getBrocante(): ?string
-    {
-        return $this->brocante;
-    }
-
-    public function setBrocante(?string $brocante): self
-    {
-        $this->brocante = $brocante;
-
-        return $this;
-    }
-
-    public function getFeteForaine(): ?string
-    {
-        return $this->feteForaine;
-    }
-
-    public function setFeteForaine(?string $feteForaine): self
-    {
-        $this->feteForaine = $feteForaine;
+        $this->category = $category;
 
         return $this;
     }
