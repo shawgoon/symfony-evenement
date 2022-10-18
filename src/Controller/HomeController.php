@@ -41,7 +41,7 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $objetManager->persist($event);
             $objetManager->flush();
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('afficheEvents');
         }
         return $this->render('home/addEvent.html.twig',[
             'formulaire' => $form->createView()

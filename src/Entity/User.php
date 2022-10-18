@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @UniqueEntity(
- * "email",
+ * fields="email",
  * message="l'email existe déjà")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -41,12 +41,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    /**
-     * @Assert\EqualTo(
-     * propertyPath = "password",
-     * message = "les mots de passe ne sont pas identiques")
-     */
-    public $comfirmPassword;
+    // /**
+    //  * @Assert\EqualTo(
+    //  * propertyPath = "password",
+    //  * message = "les mots de passe ne sont pas identiques")
+    //  */
+    // public $confirmPassword;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

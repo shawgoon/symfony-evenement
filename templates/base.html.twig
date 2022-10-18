@@ -30,6 +30,7 @@
                     </a>
                     
                     {%if app.user%}
+                    <li>Bonjour {{app.user.prenom}}</li>
                     <a href="{{path('app_logout')}}">
                         <li>se déconnecter</li>
                     </a>

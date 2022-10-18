@@ -56,7 +56,7 @@ button{
     width: 30%; height: 45vh;
     border: solid 2px green;
     border-radius: 1em;
-    margin: 1em;
+    margin: 0.5em;
     padding: 0.5em;
     display: flex;
     flex-direction: column;
@@ -67,7 +67,7 @@ button{
     padding-bottom: 0.5em;
 }
 .card img{
-    width: 90%; height: 23vh;
+    width: 100%; height: 23vh;
 }
 p{
     margin: 0.3em;

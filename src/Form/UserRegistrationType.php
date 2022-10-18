@@ -18,7 +18,7 @@ class UserRegistrationType extends AbstractType
             ->add('prenom')
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
-            ->add('ComfirmPassword', PasswordType::class)
+            // ->add('ConfirmPassword', PasswordType::class)
             // ->add('roles')
         ;
     }

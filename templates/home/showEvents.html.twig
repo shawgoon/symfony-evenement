@@ -3,13 +3,15 @@
 {% block title %}Affichage des événements{% endblock %}
 
 {% block body %}
-{% for events in events %}
-    <div class="card">
-        <h3>{{event.date}}</h3>
-        <h2>{{event.title}}</h2>
-        <p>{{event.place}}</p>
-        <img src="{{event.picture}}" alt="">
-        <p>{{event.description}}</p>
+{% for event in events %}
+    <div class="wrapper">
+        <div class="card">
+            {# <h3>{{event.date}}</h3> #}
+            <h2>{{event.title}}</h2>
+            <p>{{event.place}}</p>
+            <img src="{{event.picture}}" alt="">
+            <p>{{event.description}}</p>
+        </div>
     </div>
 {% endfor %}
 {% endblock %}
