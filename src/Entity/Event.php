@@ -49,9 +49,15 @@ class Event
      */
     private $Category;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=category::class, inversedBy="events")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->Category = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int

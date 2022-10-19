@@ -22,15 +22,19 @@
                     <a href="{{path('app_home')}}">
                         <li>Home</li>
                     </a>
-                    <a href="{{path('afficheEvents')}}">
-                        <li>Afficher les événements</li>
+                    <a href="{{path('app_afficheEvents')}}">
+                        <li>Afficher tous les événements</li>
                     </a>
-                    <a href="{{path('ajoutEvent')}}">
-                        <li>ajouter un événement</li>
-                    </a>
+
+                    {# <a href="{{path('app_catEvents',{'id':category.id})}}">
+                        <li>Afficher les événements par catégories</li>
+                    </a> #}
                     
                     {%if app.user%}
-                    <li>Bonjour {{app.user.prenom}}</li>
+                    <div class="userName">Bonjour {{app.user.prenom}}</div>
+                    <a href="{{path('app_ajoutEvent')}}">
+                        <li>ajouter un événement</li>
+                    </a>
                     <a href="{{path('app_logout')}}">
                         <li>se déconnecter</li>
                     </a>

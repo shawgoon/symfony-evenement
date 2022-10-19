@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-
 <div class="background">
- 
+    <div class="catEventForm">
+        {{form_start (formulaire)}}
+        {{form_row (formulaire.name)}}
+        
+        <a href="{# {{path('app_catEvents',{'id':event.id})}} #}">
+            <li>Afficher les événements par catégories</li>
+        </a>
+        {{form_end (formulaire)}}  
+    </div>
 </div>
 {% endblock %}

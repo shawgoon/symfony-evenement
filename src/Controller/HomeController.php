@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Event;
+use App\Form\CategoryType;
 use App\Form\EventType;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +19,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(): Response
+    public function index(ObjectManager $objetManager, Request $requete): Response
     {
-        return $this->render('home/index.html.twig', []);
+        $catEvent = new Category();
+        $form = $this->createForm(CategoryType::class,$catEvent);
+        $form->handleRequest($requete);
+        if($form->isSubmitted() && $form->isValid()){
+            $objetManager->persist($catEvent);
+            $objetManager->flush();
+            return $this->redirectToRoute('app_catEvents');
+        }
+        return $this->render('home/index.html.twig', [
+            'formulaire' => $form->createView(),
+            'catEvent' => $catEvent,
+        ]);
     }
     /**
-     * @Route("/showEvents", name="afficheEvents")
+     * @Route("/showEvents", name="app_afficheEvents")
      */
     public function showEvents(){
         $repo = $this->getDoctrine()->getRepository(Event::class);
@@ -32,7 +46,7 @@ class HomeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/addEvent", name="ajoutEvent")
+     * @Route("/addEvent", name="app_ajoutEvent")
      */
     public function addEvent(ObjectManager $objetManager, Request $requete){
         $event = new Event();
@@ -41,10 +55,21 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $objetManager->persist($event);
             $objetManager->flush();
-            return $this->redirectToRoute('afficheEvents');
+            return $this->redirectToRoute('app_afficheEvents');
         }
         return $this->render('home/addEvent.html.twig',[
             'formulaire' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/catEvent/{id}",name="app_catEvents")
+     */
+    public function catEvents(ManagerRegistry $doctrine, $id){
+        $om = $doctrine->getRepository(Category::class);
+        $catEvents = $om->findEventByCategory($id);
+        return $this->render("home/catEvent.html.twig",[
+            'catEvents' => $catEvents,
+        ]);
+    }
+
 }

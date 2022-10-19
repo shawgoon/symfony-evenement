@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,40 +20,60 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $category;
+    private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="Category")
+     * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="category")
      */
-    private $event;
+    private $events;
+
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCategory(): ?string
+    public function getName(): ?string
     {
-        return $this->category;
+        return $this->name;
     }
 
-    public function setCategory(?string $category): self
+    public function setName(string $name): self
     {
-        $this->category = $category;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getEvent(): ?Event
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
     {
-        return $this->event;
+        return $this->events;
     }
 
-    public function setEvent(?Event $event): self
+    public function addEvent(Event $event): self
     {
-        $this->event = $event;
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            $event->removeCategory($this);
+        }
 
         return $this;
     }

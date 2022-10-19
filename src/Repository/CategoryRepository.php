@@ -63,4 +63,14 @@ class CategoryRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    // récupérer des évents par catégorie
+    public function findEventByCategory($id){
+        return $this->createQueryBuilder("category")
+        ->select("event.title","event.date","event.place")
+        ->leftJoin("category.event","event")
+        ->andWhere("category.id = :id")
+        ->setParameter("id",$id)
+        ->getQuery()
+        ->getResult();
+    }
 }
